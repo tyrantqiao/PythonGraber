@@ -1,4 +1,4 @@
-from tools.driver import wait_element_presence
+from tools.driver import wait_element_presence, assert_page_load
 from tools.driver import get_chrome_driver
 from selenium.webdriver.common.keys import Keys
 
@@ -14,11 +14,13 @@ element_password = driver.find_element_by_name("password")
 element_account.send_keys(input("input your account\n"))
 element_password.send_keys(input("input your password\n"))
 element_password.send_keys(Keys.RETURN)
+
 try:
-    wait_element_presence(driver, 5, 'title', 'tyrantQiao')
-    #cannot use devTools when you use the driver. This action will crash the driver.
-    write_text(driver.page_source, 'weiboIndex')
+    assert_page_load(driver,'/home')
 except:
-    print('cannot write text,something wrong')
-finally:
-    driver.quit()
+    print('error to find the page_url')
+
+#cannot use devTools when you use the driver. This action will crash the driver.
+write_text(driver.page_source, 'weiboIndex')
+
+driver.quit()

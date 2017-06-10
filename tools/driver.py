@@ -18,7 +18,16 @@ def wait_element_presence(driver, wait_seconds, element_tag, element_name):
         )
         print("I find the element " + element_name)
     except:
-        print("too long to find the element "+element_name)
+        print("too long to find the element " + element_name)
+
+
+def assert_page_load(driver, page_url):
+    actual_url = driver.current_url
+    if page_url in actual_url:
+        print('yes it is')
+        return True
+    else:
+        raise 'the driver do not get the accurate url'
 
 
 def __init__():
