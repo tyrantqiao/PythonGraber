@@ -7,6 +7,11 @@ import re
 
 from tools.exception import NotAccurateUrl, ElementNotFound
 
+
+def get_phantomjs_driver():
+    return webdriver.PhantomJS("..\\content\\engine\\phantomjs.exe")
+
+
 # cannot use devTools when you use the driver. This action will crash the driver.
 def get_chrome_driver():
     return webdriver.Chrome("..\\content\\engine\\chromedriver.exe")
@@ -40,8 +45,8 @@ def assert_page_load(driver, page_url):
 def login_directly(driver, account_tag, account_tag_name, passwd_tag, passwd_tag_name, wait_seconds=10):
     wait_element_presence(driver, wait_seconds, account_tag, account_tag_name)
 
-    element_account = driver.find_element(account_tag,account_tag_name)
-    element_password = driver.find_element(passwd_tag,passwd_tag_name)
+    element_account = driver.find_element(account_tag, account_tag_name)
+    element_password = driver.find_element(passwd_tag, passwd_tag_name)
     element_account.send_keys(input("input your account\n"))
     element_password.send_keys(input("input your password\n"))
     element_password.send_keys(Keys.RETURN)
@@ -51,7 +56,7 @@ def login_directly(driver, account_tag, account_tag_name, passwd_tag, passwd_tag
 def search_content(driver, search_tag, search_name, search_content):
     try:
         wait_element_presence(driver, '5', search_tag, search_name)
-        search_element = driver.find_element(search_tag,search_name)
+        search_element = driver.find_element(search_tag, search_name)
         search_element.send_keys(search_content)
         search_element.send_keys(Keys.RETURN)
     except:

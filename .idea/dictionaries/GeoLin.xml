@@ -2,10 +2,13 @@
   <dictionary name="GeoLin">
     <words>
       <w>comhead</w>
+      <w>comheads</w>
       <w>dbanotes</w>
       <w>loginname</w>
       <w>passwd</w>
+      <w>phantomjs</w>
       <w>weibo</w>
+      <w>xsrf</w>
       <w>zhihu</w>
     </words>
   </dictionary>

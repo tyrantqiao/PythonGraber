@@ -1,6 +1,6 @@
 import pymysql
 
-from tools.database import get_mysql_db
+from tools.database import get_mysql_db, insert_values
 
 db = pymysql.connect("localhost", "root", "1YTINTERNshipQsql", "posts")
 cursor = db.cursor()
@@ -25,6 +25,11 @@ post_table_sql = '''
     )
 '''
 
-
-cursor.execute(post_table_sql)
+insert_sql = insert_values('popular',
+                           'POST_TITLE,POST_URL,COMHEAD',
+                           '''
+                            '初窥dep', 'http://tonybai.com/2017/06/08/first-glimpse-of-dep/', 'tonybai.com'
+                        ''')
+print(insert_sql)
+cursor.execute(insert_sql)
 db.close()

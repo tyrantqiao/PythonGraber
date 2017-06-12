@@ -6,6 +6,13 @@ def get_mysql_db(user, passwd, database, domain="localhost"):
 
 
 def insert_values(table_name, columns, values):
+    sql = '''
+        INSERT INTO %s(%s)VALUES(%s)
+    ''' % (table_name, columns, values)
+    return sql
+
+
+def update_values(table_name, columns, new_values):
     return '''
-        INSERT INTO %s(%s)VALUES (%s)
-    '''.format(table_name,columns,values)
+        update %s set %s=%s
+    '''.format(table_name, columns, new_values)
