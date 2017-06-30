@@ -48,7 +48,7 @@ def login(email, password):
         'email': email,
         'password': password,
         '_xsrf': get_xsrf(),
-        # "captcha": 'cn',
+        # # "captcha": 'cn'
         "captcha": get_captcha(),
         'remember_me': 'true'
     }
@@ -56,8 +56,13 @@ def login(email, password):
     login_code = response.json()
     print(login_code['msg'])
     for i in session.cookies:
-        print(i)
+        print('session'+str(i))
     session.cookies.save('..\\content\\text\\cookies.txt')
 
 
+
 login('51307521@qq.com', 'Tyrant')
+session.cookies = cookiejar.LWPCookieJar(filename='..\\content\\text\\cookies.txt')
+session_obj=session.get('http://www.zhihu.com')
+content=session_obj.content
+print(content.decode('utf-8'))
