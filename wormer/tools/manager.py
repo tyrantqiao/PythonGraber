@@ -42,8 +42,11 @@ class LogManager:
 
     def save_text(self, file_name, text):
         name = str(self.get_time()) + file_name + '.txt'
+        print(name)
+        print(type(name))
         with open(name, 'w') as file:
-            file.write(text)
+            print("I'm here")
+            file.write('hahaha')
             print('save text:' + name)
 
     def get_time(self):
