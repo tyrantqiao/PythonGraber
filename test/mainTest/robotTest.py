@@ -17,10 +17,11 @@ t = """1111111111</div><div class="lemma-summary" label-module="lemmaSummary">
 
 # <[/ad].*?>([^\s<\n]*?)<[/sad].*?> 0.2
 # final edition >\s*?([^\&\b\n\[\]]*?)< 1.0
+# update edition (?=lemma-summary")(.*?)(?<=config)
+#TODO use regex less is more, changing to use tool
 t.strip()
-a = re.findall('''(lemmaSummary">.*</div></div>
-<div class="configModuleBanner">)''',
-               t, flags=re.DOTALL)
+a = re.findall('''(?=lemma-summary")(.*?)(?<=config)''',
+               t, flags=re.VERBOSE | re.MULTILINE | re.DOTALL)
 m = re.findall('>\s*?([^\&\b\n\[\]]*?)<', t, flags=re.VERBOSE)
 # print("".join(m))
 print(a)
