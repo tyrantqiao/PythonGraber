@@ -66,9 +66,9 @@ class TextManager:
             # print(match_obj)
 
     @staticmethod
-    def find_text_by_regex(page_source, text_pattern):
-        print(re.findall(text_pattern, page_source))
-        return "".join(re.findall(text_pattern, page_source))
+    def find_text_by_regex(page_source, text_pattern, flags):
+        # print(re.findall(text_pattern, page_source))
+        return "".join(re.findall(text_pattern, page_source,flags=flags))
 
 
 from datetime import datetime
@@ -83,7 +83,7 @@ class LogManager:
         self.save_text(text_name, text)
 
     def save_text(self, file_name, text):
-        #TODO make the file output to /content/text/
+        # TODO make the file output to /content/text/
         name = str(self.get_time()) + file_name + '.txt'
         # print(name)
         # print(type(name))
@@ -97,6 +97,8 @@ class LogManager:
 
     def collect_data(self, page_content):
         self.content += page_content
+        self.content += '-------------------------------------------'
+        print('now:' + page_content)
 
     def save_all_data(self):
         self.save_text(self.textManager.get_abbreviation(self.content), self.content)
